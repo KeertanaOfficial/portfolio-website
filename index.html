@@ -1,0 +1,395 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Keertana Portfolio</title>
+<meta name="description" content="Keertana: Senior Technical Program Manager working at the intersection of infrastructure, data and AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a hub of section tiles (the "program map") over long-form sections; kolam dot-grid as the signature motif */
+:root{
+  --paper:#F4F5F9;
+  --surface:#FFFFFF;
+  --ink:#1C1E33;
+  --muted:#5A5E7A;
+  --line:#D9DCE8;
+  --turmeric:#B87708;
+  --turmeric-soft:#F6E7C6;
+  --indigo:#2E3A8C;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#11121C; --surface:#1A1C2A; --ink:#ECEDF5; --muted:#A3A7C2; --line:#2C2F45;
+    --turmeric:#F0B23A; --turmeric-soft:#3A2D12; --indigo:#9AA6F2; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#11121C; --surface:#1A1C2A; --ink:#ECEDF5; --muted:#A3A7C2; --line:#2C2F45;
+  --turmeric:#F0B23A; --turmeric-soft:#3A2D12; --indigo:#9AA6F2; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,40px);padding-block:20px 64px;}
+a{color:var(--indigo);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--turmeric);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:8px 28px}
+.mark{font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.mark span{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:1rem}
+.toggle{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-family:var(--mono);font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:8px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:center;padding-block:12px 40px}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--turmeric)}
+.hero p.lede{max-width:34em;color:var(--muted);font-size:1.15rem;margin:18px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{font-family:var(--mono);font-size:.78rem;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.chip b{color:var(--turmeric);font-weight:600}
+.kolam{width:100%;max-width:380px;justify-self:center;aspect-ratio:1}
+.kolam svg{width:100%;height:100%;display:block}
+
+/* hub tiles */
+.hub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-block:8px 64px}
+.tile{display:flex;align-items:center;gap:14px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);text-decoration:none;color:var(--ink);transition:transform .18s ease,border-color .18s ease}
+.tile:hover{transform:translateY(-3px);border-color:var(--turmeric)}
+.tile svg{flex:none;width:44px;height:44px;stroke:var(--ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tile svg .acc{stroke:var(--turmeric)}
+.tile strong{display:block;font-family:var(--display);font-size:1.1rem}
+.tile small{color:var(--muted);font-size:.88rem;line-height:1.35;display:block}
+
+/* sections */
+section.block{padding-block:40px;border-top:1px solid var(--line)}
+.block-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:26px}
+.block-head h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700}
+.block-head p{margin:0;color:var(--muted);max-width:36em}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.proj h3{font-size:1.3rem;font-weight:700}
+.proj p{margin:0}
+.status{align-self:flex-start;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--turmeric-soft);color:var(--ink)}
+.status.live{background:var(--indigo);color:var(--surface)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.stack span{font-family:var(--mono);font-size:.72rem;color:var(--muted);border:1px dashed var(--line);border-radius:6px;padding:2px 7px}
+
+/* programs: timeline */
+.timeline{display:grid;gap:0}
+.role{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding-block:22px;border-bottom:1px dashed var(--line)}
+.role:last-child{border-bottom:0}
+.role .when{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.role .when b{display:block;font-family:var(--display);font-size:1.05rem;color:var(--ink);margin-bottom:2px}
+.role h3{font-size:1.25rem;margin-bottom:10px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.metric{border-left:3px solid var(--turmeric);padding:4px 0 4px 12px}
+.metric b{display:block;font-family:var(--display);font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.metric span{font-size:.85rem;color:var(--muted);line-height:1.3;display:block}
+.role ul{margin:0;padding-left:1.1em;max-width:62ch}
+.role li{margin-bottom:4px}
+
+/* certs */
+.certs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cert{padding:20px;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.cert .code{font-family:var(--mono);font-size:.8rem;color:var(--turmeric);font-weight:600}
+.cert h3{font-size:1.15rem;margin:6px 0}
+.cert p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* off the clock */
+.offclock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.hobby h3{font-size:1.1rem;margin:10px 0 4px}
+.hobby p{margin:0;color:var(--muted);font-size:.95rem}
+.hobby svg{width:40px;height:40px;stroke:var(--turmeric);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* work with me + contact */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.panel{padding:24px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.panel h3{font-size:1.25rem;margin-bottom:8px}
+.panel p{margin:0 0 10px}
+.contact-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.contact-row code{font-family:var(--mono);font-size:.9rem;background:var(--paper);border:1px solid var(--line);padding:6px 10px;border-radius:8px;user-select:all;overflow-wrap:anywhere}
+.btn{border:0;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.8rem;padding:8px 14px;border-radius:999px;cursor:pointer}
+.placeholder{font-family:var(--mono);font-size:.72rem;color:var(--turmeric)}
+
+footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .kolam{max-width:240px;order:-1;justify-self:start}
+  .hub{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .offclock{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .certs{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .hub,.projects,.duo{grid-template-columns:1fr}
+  .role{grid-template-columns:1fr;gap:8px}
+  .metrics{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  .tile{transition:none}
+  .kolam path{animation:none!important}
+}
+.kolam path{stroke-dasharray:var(--len);stroke-dashoffset:0;animation:draw 2.4s ease-out both}
+@keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" id="top"><span>K</span>Keertana</a>
+    <button class="toggle" id="themeToggle" type="button" aria-label="Switch color theme"><span id="themeIcon">☾</span><span id="themeLabel">Dark</span></button>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <p class="eyebrow">Senior Technical Program Manager</p>
+      <h1 id="hero-title">I connect the teams that build things, and <em>ship the AI</em> that helps them.</h1>
+      <p class="lede">18+ years in IT and 9+ in program management. I have run $150M+ transitions, put AI copilots into production in weeks, and I spend my evenings building data and AI side projects to see how the pieces really fit.</p>
+      <div class="facts">
+        <span class="chip"><b>PMP</b> certified</span>
+        <span class="chip"><b>18+</b> yrs IT</span>
+        <span class="chip"><b>9+</b> yrs program mgmt</span>
+        <span class="chip">SQL · Kusto · Power BI · Azure</span>
+      </div>
+    </div>
+    <div class="kolam" aria-hidden="true"><svg id="kolam" viewBox="0 0 200 200"></svg></div>
+  </section>
+
+  <nav class="hub" aria-label="Sections">
+    <a class="tile" href="#projects">
+      <svg viewBox="0 0 44 44"><rect x="6" y="20" width="14" height="16" rx="2"/><rect x="24" y="12" width="14" height="24" rx="2"/><path class="acc" d="M10 14l4-6 4 6"/></svg>
+      <span><strong>Projects</strong><small>Side builds in data, AI and automation</small></span>
+    </a>
+    <a class="tile" href="#programs">
+      <svg viewBox="0 0 44 44"><circle class="acc" cx="22" cy="22" r="5"/><circle cx="8" cy="10" r="3"/><circle cx="36" cy="10" r="3"/><circle cx="8" cy="34" r="3"/><circle cx="36" cy="34" r="3"/><path d="M11 12l7 7M33 12l-7 7M11 32l7-7M33 32l-7-7"/></svg>
+      <span><strong>Programs</strong><small>Where I've led delivery, with the numbers</small></span>
+    </a>
+    <a class="tile" href="#certs">
+      <svg viewBox="0 0 44 44"><circle cx="22" cy="18" r="10"/><path class="acc" d="M17 18l4 4 6-7"/><path d="M16 27l-3 11 9-4 9 4-3-11"/></svg>
+      <span><strong>Certifications</strong><small>PMP, Azure AI, Claude Architect</small></span>
+    </a>
+    <a class="tile" href="#work">
+      <svg viewBox="0 0 44 44"><path d="M6 24l8-8 8 6 8-6 8 8"/><path class="acc" d="M14 24l6 6a3 3 0 004 0l6-6"/><path d="M6 24v8M38 24v8"/></svg>
+      <span><strong>Work With Me</strong><small>Roles and engagements I'm open to</small></span>
+    </a>
+    <a class="tile" href="#offclock">
+      <svg viewBox="0 0 44 44"><path d="M30 6l8 8-16 16-8-8z"/><path class="acc" d="M14 22c-6 0-8 6-8 16 8 0 14-2 14-8"/></svg>
+      <span><strong>Off the Clock</strong><small>Painting, cooking, cricket, Sanskrit</small></span>
+    </a>
+    <a class="tile" href="#contact">
+      <svg viewBox="0 0 44 44"><rect x="6" y="11" width="32" height="22" rx="3"/><path class="acc" d="M7 13l15 11 15-11"/></svg>
+      <span><strong>Contact</strong><small>Say hello</small></span>
+    </a>
+  </nav>
+
+  <section class="block" id="projects" aria-labelledby="projects-title">
+    <div class="block-head">
+      <h2 id="projects-title">Projects</h2>
+      <p>I build to learn. Each one starts as an MVP, then grows in versions the way I'd run a real program.</p>
+    </div>
+    <div class="projects">
+      <article class="proj">
+        <span class="status live">v1 working</span>
+        <h3>KT Manual Generator</h3>
+        <p>Turns recorded knowledge-transfer sessions into step-by-step manuals, one per topic, with screenshots pulled straight from the video and a one-line crux for each step. Built for a 20-video handover.</p>
+        <div class="stack"><span>FastAPI</span><span>Celery + Redis</span><span>ffmpeg</span><span>Whisper</span><span>Claude API</span><span>python-docx</span><span>Docker</span></div>
+      </article>
+      <article class="proj">
+        <span class="status">Portfolio Series #3 / 10</span>
+        <h3>Zomato Food Delivery, End to End</h3>
+        <p>A full-stack ordering system: schema, API, React front end and Power BI reports. Includes rider auto-assignment, role-based auth, audit logging and a rolling 7-day rider workload window.</p>
+        <div class="stack"><span>SQL Server</span><span>Flask</span><span>React / Vite</span><span>Power BI</span></div>
+      </article>
+      <article class="proj">
+        <span class="status">In progress</span>
+        <h3>L1 Support Multi-Agent Desk</h3>
+        <p>An AI first-line support desk for a Teams-style chat app, built with a partner to practice the full agent toolkit: multiple agents, MCP tools, retrieval, evals and guardrails.</p>
+        <div class="stack"><span>Multi-agent</span><span>MCP</span><span>RAG</span><span>Evals</span><span>Guardrails</span></div>
+      </article>
+      <article class="proj">
+        <span class="status">In progress</span>
+        <h3>Daily Pain Point Scan</h3>
+        <p>A scheduled pipeline that reads IT and cloud communities plus low-star ITSM tool reviews, groups recurring complaints by audience and source, and posts a digest to Slack every morning.</p>
+        <div class="stack"><span>Claude Cowork</span><span>Reddit API</span><span>G2 / Capterra</span><span>Slack</span></div>
+      </article>
+      <article class="proj">
+        <span class="status">Migrating</span>
+        <h3>SmartDesk AI</h3>
+        <p>A containerized smart help desk that triages incoming requests. Currently moving from a school-provided AWS account to my own.</p>
+        <div class="stack"><span>Docker</span><span>AWS</span></div>
+      </article>
+      <article class="proj">
+        <span class="status">Coming soon</span>
+        <h3>More of the Series</h3>
+        <p>Each new build will live on its own subdomain and be linked here as it ships.</p>
+        <div class="stack"><span>Data</span><span>AI</span><span>Automation</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="programs" aria-labelledby="programs-title">
+    <div class="block-head">
+      <h2 id="programs-title">Programs</h2>
+      <p>I'm the connective layer: between service teams and infrastructure, business and engineering, plan and production.</p>
+    </div>
+    <div class="timeline">
+      <div class="role">
+        <div class="when"><b>Wipro</b>2025 to 2026</div>
+        <div>
+          <h3>AI Automation Program Manager <span class="eyebrow">· Solution Architect, AI and Automation</span></h3>
+          <div class="metrics">
+            <div class="metric"><b>6 wks</b><span>org's first Copilot Studio product, live</span></div>
+            <div class="metric"><b>10–15 h/day</b><span>manual quoting cut to minutes</span></div>
+            <div class="metric"><b>15–20 h/wk</b><span>saved by an order-tracking copilot</span></div>
+          </div>
+          <ul>
+            <li>Took a quoting copilot from idea to production with full adoption by the global approval team.</li>
+            <li>Built a second copilot for order tracking in 3 weeks, replacing hourly manual status checks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="when"><b>Wipro</b>Transition</div>
+        <div>
+          <h3>Transition Manager</h3>
+          <div class="metrics">
+            <div class="metric"><b>$150M+</b><span>multi-year program</span></div>
+            <div class="metric"><b>750+</b><span>people onboarded across 3 regions in 4 months</span></div>
+            <div class="metric"><b>5 wks</b><span>to turn around stalled onboarding at ~50 sites</span></div>
+          </div>
+          <ul>
+            <li>Owned 2 of 7 service lines and hit every phase gate on time.</li>
+            <li>Ran a daily war room across 10 dependent teams, backed by a central tracker and Power BI dashboard.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="when"><b>Wipro</b>Delivery</div>
+        <div>
+          <h3>Technical Program Manager</h3>
+          <div class="metrics">
+            <div class="metric"><b>100%</b><span>on-time delivery, $10M+ portfolio</span></div>
+            <div class="metric"><b>92%</b><span>accuracy on ML ticket classification</span></div>
+            <div class="metric"><b>75%</b><span>less manual work in an Azure migration</span></div>
+          </div>
+          <ul>
+            <li>Cut weekly ticket triage from about 8 hours to 1.</li>
+            <li>Automated Azure deployments with Bicep and led a team of 20+.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="role">
+        <div class="when"><b>Earlier</b>Foundations</div>
+        <div>
+          <h3>Senior Project Manager, HCL Technologies · Software Developer, Hewlett Packard Enterprise</h3>
+          <ul>
+            <li>10 years of IT consulting across Wipro and HCL Technologies.</li>
+            <li>Started as a developer, which is why I still like to read the code and the data before I write the plan.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="certs" aria-labelledby="certs-title">
+    <div class="block-head"><h2 id="certs-title">Certifications</h2></div>
+    <div class="certs">
+      <div class="cert"><span class="code">PMI · PMP</span><h3>Project Management Professional</h3><p>Above Target in all three domains.</p></div>
+      <div class="cert"><span class="code">MICROSOFT · AI-900</span><h3>Azure AI Fundamentals</h3><p>Core AI and machine learning concepts on Azure.</p></div>
+      <div class="cert"><span class="code">ANTHROPIC · CCA-F</span><h3>Claude Certified Architect, Foundations</h3><p>In progress.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="work" aria-labelledby="work-title">
+    <div class="block-head"><h2 id="work-title">Work With Me</h2></div>
+    <div class="duo">
+      <div class="panel">
+        <p class="eyebrow">Full time</p>
+        <h3>Technical Program Manager roles</h3>
+        <p>Big-picture programs that span infrastructure, data and AI, where many teams have to land one outcome together. I'm also curious about Technical Product Manager work.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Short engagements</p>
+        <h3>AI automation problems</h3>
+        <p>Have a manual process that eats hours every week? I like scoping it, building the first working version and getting people to actually use it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="offclock" aria-labelledby="off-title">
+    <div class="block-head"><h2 id="off-title">Off the Clock</h2><p>The things that keep the big picture in focus.</p></div>
+    <div class="offclock">
+      <div class="hobby"><svg viewBox="0 0 40 40"><path d="M28 5l7 7-14 14-7-7z"/><path d="M14 19c-5 0-8 5-8 15 7 0 13-2 13-8"/></svg><h3>Acrylic painting</h3><p>Color, layers and patience.</p></div>
+      <div class="hobby"><svg viewBox="0 0 40 40"><path d="M5 20h30a15 12 0 01-30 0z"/><path d="M14 13c0-3 3-3 3-6M22 13c0-3 3-3 3-6"/></svg><h3>South Indian cooking</h3><p>Recipes that run on instinct.</p></div>
+      <div class="hobby"><svg viewBox="0 0 40 40"><path d="M27 4l5 5-16 16-5-5z"/><path d="M11 20l-6 6 4 4 6-6"/><circle cx="30" cy="30" r="4"/></svg><h3>Cricket</h3><p>Collecting gear and vintage bats.</p></div>
+      <div class="hobby"><svg viewBox="0 0 40 40"><path d="M6 10h28M8 10c0 10 4 18 12 22M20 10v22M30 10c0 8-2 14-6 18"/></svg><h3>Sanskrit</h3><p>A weekly class, one verse at a time.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="contact" aria-labelledby="contact-title">
+    <div class="block-head"><h2 id="contact-title">Contact</h2><p>Hiring, collaborating, or just want to talk about data and AI? Reach out.</p></div>
+    <div class="duo">
+      <div class="panel">
+        <p class="eyebrow">Email</p>
+        <div class="contact-row"><code id="emailText">you@yourdomain.com</code><button class="btn" id="copyEmail" type="button">Copy</button></div>
+        <p class="placeholder" id="copyNote" aria-live="polite">Placeholder: replace with your address</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Elsewhere</p>
+        <p><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></p>
+        <p class="placeholder">Placeholder: add your profile links</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Keertana · Bothell, WA</span>
+    <span>Built in plain HTML, ready for its own domain.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  // Theme toggle
+  var root=document.documentElement, label=document.getElementById('themeLabel'), icon=document.getElementById('themeIcon');
+  function isDark(){var t=root.getAttribute('data-theme'); if(t) return t==='dark'; return window.matchMedia('(prefers-color-scheme: dark)').matches;}
+  function sync(){var d=isDark(); label.textContent=d?'Light':'Dark'; icon.textContent=d?'☀':'☾';}
+  try{var saved=localStorage.getItem('kp-theme'); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  sync();
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var next=isDark()?'light':'dark'; root.setAttribute('data-theme',next);
+    try{localStorage.setItem('kp-theme',next);}catch(e){} sync();
+  });
+
+  // Copy email
+  document.getElementById('copyEmail').addEventListener('click',function(){
+    var txt=document.getElementById('emailText').textContent, note=document.getElementById('copyNote');
+    function fallback(){var r=document.createRange(); r.selectNodeContents(document.getElementById('emailText')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); note.textContent='Selected. Press Ctrl+C or Cmd+C to copy.';}
+    try{navigator.clipboard.writeText(txt).then(function(){note.textContent='Copied';},fallback);}catch(e){fallback();}
+  });
+
+  // Kolam: dot grid with loops drawn around alternating dots
+  var svg=document.getElementById('kolam'), ns='http://www.w3.org/2000/svg', n=5, gap=36, off=28;
+  var css=getComputedStyle(root);
+  for(var i=0;i<n;i++){for(var j=0;j<n;j++){
+    var x=off+i*gap, y=off+j*gap;
+    var c=document.createElementNS(ns,'circle'); c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',2.6);
+    c.setAttribute('style','fill:var(--ink)'); svg.appendChild(c);
+    if((i+j)%2===0){
+      var r=16, p=document.createElementNS(ns,'path');
+      p.setAttribute('d','M'+(x-r)+' '+y+' Q'+x+' '+(y-r*1.6)+' '+(x+r)+' '+y+' Q'+x+' '+(y+r*1.6)+' '+(x-r)+' '+y+' M'+x+' '+(y-r)+' Q'+(x+r*1.6)+' '+y+' '+x+' '+(y+r)+' Q'+(x-r*1.6)+' '+y+' '+x+' '+(y-r));
+      var center=(i===2&&j===2);
+      p.setAttribute('style','fill:none;stroke-width:'+(center?2.4:1.5)+';stroke-linecap:round;stroke:'+(center?'var(--turmeric)':'var(--indigo)')+';--len:200;animation-delay:'+((i+j)*0.12)+'s');
+      svg.appendChild(p);
+    }
+  }}
+  var ring=document.createElementNS(ns,'rect'); ring.setAttribute('x',8); ring.setAttribute('y',8); ring.setAttribute('width',184); ring.setAttribute('height',184); ring.setAttribute('rx',40);
+  ring.setAttribute('style','fill:none;stroke:var(--line);stroke-width:1.2'); svg.insertBefore(ring,svg.firstChild);
+})();
+</script>
+
+</body></html>
