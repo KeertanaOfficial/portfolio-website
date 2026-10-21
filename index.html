@@ -63,6 +63,15 @@ h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0}
 .tile strong{display:block;font-family:var(--display);font-size:1.1rem}
 .tile small{color:var(--muted);font-size:.88rem;line-height:1.35;display:block}
 
+/* internal page tabs (shown when a hub section is opened on its own) */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:8px;scrollbar-width:thin}
+.tabs a{flex:none;font-family:var(--mono);font-size:.8rem;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;white-space:nowrap}
+.tabs a:hover{border-color:var(--turmeric)}
+.tabs a[aria-current="page"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tabs a.home-link{color:var(--turmeric)}
+.paged section.block{border-top:0;padding-top:24px;min-height:50vh}
+.paged .block-head h2{font-size:clamp(2.2rem,6vw,3.5rem);font-weight:800}
+
 /* sections */
 section.block{padding-block:40px;border-top:1px solid var(--line)}
 .block-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:26px}
@@ -101,7 +110,7 @@ section.block{padding-block:40px;border-top:1px solid var(--line)}
 .cert p{margin:0;color:var(--muted);font-size:.95rem}
 
 /* off the clock */
-.offclock{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.offclock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .hobby h3{font-size:1.1rem;margin:10px 0 4px}
 .hobby p{margin:0;color:var(--muted);font-size:.95rem}
 .hobby svg{width:40px;height:40px;stroke:var(--turmeric);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -126,7 +135,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
   .certs{grid-template-columns:1fr}
 }
 @media (max-width:620px){
-  .hub,.projects,.duo{grid-template-columns:1fr}
+  .hub,.projects,.duo,.offclock{grid-template-columns:1fr}
   .role{grid-template-columns:1fr;gap:8px}
   .metrics{grid-template-columns:1fr}
 }
@@ -140,11 +149,11 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
 
 <div class="wrap">
   <header class="top">
-    <a class="mark" href="#top" id="top"><span>K</span>Keertana</a>
+    <a class="mark" href="#home"><span>K</span>Keertana</a>
     <button class="toggle" id="themeToggle" type="button" aria-label="Switch color theme"><span id="themeIcon">☾</span><span id="themeLabel">Dark</span></button>
   </header>
 
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero" id="hero" aria-labelledby="hero-title">
     <div>
       <p class="eyebrow">Senior Technical Program Manager</p>
       <h1 id="hero-title">I connect the teams that build things, and <em>ship the AI</em> that helps them.</h1>
@@ -159,7 +168,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
     <div class="kolam" aria-hidden="true"><svg id="kolam" viewBox="0 0 200 200"></svg></div>
   </section>
 
-  <nav class="hub" aria-label="Sections">
+  <nav class="hub" id="hub" aria-label="Sections">
     <a class="tile" href="#projects">
       <svg viewBox="0 0 44 44"><rect x="6" y="20" width="14" height="16" rx="2"/><rect x="24" y="12" width="14" height="24" rx="2"/><path class="acc" d="M10 14l4-6 4 6"/></svg>
       <span><strong>Projects</strong><small>Side builds in data, AI and automation</small></span>
@@ -178,12 +187,22 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
     </a>
     <a class="tile" href="#offclock">
       <svg viewBox="0 0 44 44"><path d="M30 6l8 8-16 16-8-8z"/><path class="acc" d="M14 22c-6 0-8 6-8 16 8 0 14-2 14-8"/></svg>
-      <span><strong>Off the Clock</strong><small>Painting, cooking, cricket, Sanskrit</small></span>
+      <span><strong>Off the Clock</strong><small>Painting, cooking, Sanskrit</small></span>
     </a>
     <a class="tile" href="#contact">
       <svg viewBox="0 0 44 44"><rect x="6" y="11" width="32" height="22" rx="3"/><path class="acc" d="M7 13l15 11 15-11"/></svg>
       <span><strong>Contact</strong><small>Say hello</small></span>
     </a>
+  </nav>
+
+  <nav class="tabs" id="tabs" aria-label="Pages" hidden>
+    <a class="home-link" href="#home">&larr; Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#programs">Programs</a>
+    <a href="#certs">Certifications</a>
+    <a href="#work">Work With Me</a>
+    <a href="#offclock">Off the Clock</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <section class="block" id="projects" aria-labelledby="projects-title">
@@ -325,7 +344,6 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
     <div class="offclock">
       <div class="hobby"><svg viewBox="0 0 40 40"><path d="M28 5l7 7-14 14-7-7z"/><path d="M14 19c-5 0-8 5-8 15 7 0 13-2 13-8"/></svg><h3>Acrylic painting</h3><p>Color, layers and patience.</p></div>
       <div class="hobby"><svg viewBox="0 0 40 40"><path d="M5 20h30a15 12 0 01-30 0z"/><path d="M14 13c0-3 3-3 3-6M22 13c0-3 3-3 3-6"/></svg><h3>South Indian cooking</h3><p>Recipes that run on instinct.</p></div>
-      <div class="hobby"><svg viewBox="0 0 40 40"><path d="M27 4l5 5-16 16-5-5z"/><path d="M11 20l-6 6 4 4 6-6"/><circle cx="30" cy="30" r="4"/></svg><h3>Cricket</h3><p>Collecting gear and vintage bats.</p></div>
       <div class="hobby"><svg viewBox="0 0 40 40"><path d="M6 10h28M8 10c0 10 4 18 12 22M20 10v22M30 10c0 8-2 14-6 18"/></svg><h3>Sanskrit</h3><p>A weekly class, one verse at a time.</p></div>
     </div>
   </section>
@@ -389,6 +407,35 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
   }}
   var ring=document.createElementNS(ns,'rect'); ring.setAttribute('x',8); ring.setAttribute('y',8); ring.setAttribute('width',184); ring.setAttribute('height',184); ring.setAttribute('rx',40);
   ring.setAttribute('style','fill:none;stroke:var(--line);stroke-width:1.2'); svg.insertBefore(ring,svg.firstChild);
+})();
+
+// Internal pages: each hub section opens as its own page via the URL hash
+(function(){
+  var pages=['projects','programs','certs','work','offclock','contact'];
+  var hero=document.getElementById('hero'), hub=document.getElementById('hub'), tabs=document.getElementById('tabs');
+  function route(forced){
+    var id=typeof forced==='string'?forced:location.hash.replace('#','');
+    var onPage=pages.indexOf(id)>-1;
+    document.body.classList.toggle('paged',onPage);
+    hero.hidden=onPage; hub.hidden=onPage; tabs.hidden=!onPage;
+    pages.forEach(function(p){document.getElementById(p).hidden=onPage?p!==id:true;});
+    Array.prototype.forEach.call(tabs.querySelectorAll('a'),function(a){
+      if(a.getAttribute('href')==='#'+id) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',function(){route();});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id=a.getAttribute('href').slice(1);
+    if(id!=='home' && pages.indexOf(id)===-1) return;
+    e.preventDefault();
+    route(id);
+    try{history.pushState(null,'',id==='home'?location.pathname+location.search:'#'+id);}catch(err){}
+  });
+  window.addEventListener('popstate',function(){route();});
+  route();
 })();
 </script>
 
