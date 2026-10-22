@@ -83,6 +83,10 @@ section.block{padding-block:40px;border-top:1px solid var(--line)}
 .proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .proj h3{font-size:1.3rem;font-weight:700}
 .proj p{margin:0}
+.proj-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:2px}
+.proj-links a{font-family:var(--mono);font-size:.78rem;color:var(--indigo);text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.proj-links a:hover{text-decoration:underline}
+.proj-links svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .status{align-self:flex-start;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--turmeric-soft);color:var(--ink)}
 .status.live{background:var(--indigo);color:var(--surface)}
 .stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
@@ -216,6 +220,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
         <h3>KT Manual Generator</h3>
         <p>Turns recorded knowledge-transfer sessions into step-by-step manuals, one per topic, with screenshots pulled straight from the video and a one-line crux for each step. Built for a 20-video handover.</p>
         <div class="stack"><span>FastAPI</span><span>Celery + Redis</span><span>ffmpeg</span><span>Whisper</span><span>Claude API</span><span>python-docx</span><span>Docker</span></div>
+        <div class="proj-links"><a href="https://github.com/KeertanaOfficial/kt-manual-generator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.4c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.2 0C7.5 3.9 6.4 4.2 6.4 4.2a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 005 10.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>GitHub</a></div>
       </article>
       <article class="proj">
         <span class="status">Portfolio Series #3 / 10</span>
@@ -236,10 +241,14 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
         <div class="stack"><span>Claude Cowork</span><span>Reddit API</span><span>G2 / Capterra</span><span>Slack</span></div>
       </article>
       <article class="proj">
-        <span class="status">Migrating</span>
+        <span class="status live">v1 working</span>
         <h3>SmartDesk AI</h3>
-        <p>A containerized smart help desk that triages incoming requests. Currently moving from a school-provided AWS account to my own.</p>
-        <div class="stack"><span>Docker</span><span>AWS</span></div>
+        <p>A containerized smart help desk that triages incoming support requests, deployed on my own AWS account behind nginx with a real TLS certificate.</p>
+        <div class="stack"><span>Docker</span><span>AWS</span><span>FastAPI</span><span>Streamlit</span><span>nginx</span></div>
+        <div class="proj-links">
+          <a href="https://smarthelpdesk.keertana-nandyala.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18 14 14 0 010-18z"/></svg>Live Demo</a>
+          <a href="https://github.com/KeertanaOfficial/smarthelpdesk-ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.4c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.2 4.2 0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 00-6.2 0C7.5 3.9 6.4 4.2 6.4 4.2a4.2 4.2 0 00-.1 3.2A4.6 4.6 0 005 10.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>GitHub</a>
+        </div>
       </article>
       <article class="proj">
         <span class="status">Coming soon</span>
@@ -364,7 +373,6 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
 
   <footer>
     <span>© 2026 Keertana · Bothell, WA</span>
-    <span>Built in plain HTML, ready for its own domain.</span>
   </footer>
 </div>
 
