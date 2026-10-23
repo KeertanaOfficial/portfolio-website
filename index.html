@@ -138,7 +138,6 @@ section.block{padding-block:40px;border-top:1px solid var(--line)}
 .contact-form textarea{min-height:110px;resize:vertical}
 .contact-form button{align-self:flex-start}
 .contact-form button:disabled{opacity:.6;cursor:not-allowed}
-.hp-field{position:absolute;left:-9999px;top:-9999px}
 
 footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 
@@ -386,7 +385,6 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
             <textarea id="cf-message" name="message" required></textarea>
           </div>
           <input type="hidden" name="_subject" value="New message from your portfolio">
-          <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn" type="submit" id="cfSubmit">Send</button>
           <p class="placeholder" id="cfNote" aria-live="polite"></p>
         </form>
