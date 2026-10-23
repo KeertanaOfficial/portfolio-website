@@ -131,6 +131,14 @@ section.block{padding-block:40px;border-top:1px solid var(--line)}
 .contact-row code{font-family:var(--mono);font-size:.9rem;background:var(--paper);border:1px solid var(--line);padding:6px 10px;border-radius:8px;user-select:all;overflow-wrap:anywhere}
 .btn{border:0;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.8rem;padding:8px 14px;border-radius:999px;cursor:pointer}
 .placeholder{font-family:var(--mono);font-size:.72rem;color:var(--turmeric)}
+.contact-form{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+.contact-form label{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+.contact-form input,.contact-form textarea{width:100%;box-sizing:border-box;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.contact-form input:focus,.contact-form textarea:focus{outline:2px solid var(--turmeric);outline-offset:1px;border-color:var(--turmeric)}
+.contact-form textarea{min-height:110px;resize:vertical}
+.contact-form button{align-self:flex-start}
+.contact-form button:disabled{opacity:.6;cursor:not-allowed}
+.hp-field{position:absolute;left:-9999px;top:-9999px}
 
 footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
 
@@ -363,9 +371,25 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
     <div class="block-head"><h2 id="contact-title">Contact</h2><p>Hiring, collaborating, or just want to talk about data and AI? Reach out.</p></div>
     <div class="duo">
       <div class="panel">
-        <p class="eyebrow">Email</p>
-        <div class="contact-row"><code id="emailText">keertana.1@gmail.com</code><button class="btn" id="copyEmail" type="button">Copy</button></div>
-        <p class="placeholder" id="copyNote" aria-live="polite"></p>
+        <p class="eyebrow">Send a message</p>
+        <form class="contact-form" id="contactForm">
+          <div>
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
+          <div>
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New message from your portfolio">
+          <input class="hp-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn" type="submit" id="cfSubmit">Send</button>
+          <p class="placeholder" id="cfNote" aria-live="polite"></p>
+        </form>
       </div>
       <div class="panel">
         <p class="eyebrow">Elsewhere</p>
@@ -392,12 +416,43 @@ footer{border-top:1px solid var(--line);padding-top:24px;margin-top:24px;color:v
     try{localStorage.setItem('kp-theme',next);}catch(e){} sync();
   });
 
-  // Copy email
-  document.getElementById('copyEmail').addEventListener('click',function(){
-    var txt=document.getElementById('emailText').textContent, note=document.getElementById('copyNote');
-    function fallback(){var r=document.createRange(); r.selectNodeContents(document.getElementById('emailText')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); note.textContent='Selected. Press Ctrl+C or Cmd+C to copy.';}
-    try{navigator.clipboard.writeText(txt).then(function(){note.textContent='Copied';},fallback);}catch(e){fallback();}
-  });
+  // Contact form -> Formspree (static site, no backend of its own).
+  // TODO: after creating a form at https://formspree.io, replace YOUR_FORM_ID
+  // below with your real form ID (from the endpoint Formspree gives you,
+  // e.g. https://formspree.io/f/abcdwxyz).
+  var FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var note = document.getElementById('cfNote'), btn = document.getElementById('cfSubmit');
+      if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
+        note.textContent = 'Form is not connected yet.';
+        return;
+      }
+      btn.disabled = true; btn.textContent = 'Sending…'; note.textContent = '';
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm)
+      }).then(function(resp){
+        if (resp.ok) {
+          note.textContent = "Thanks — your message is on its way.";
+          contactForm.reset();
+        } else {
+          return resp.json().then(function(data){
+            note.textContent = (data && data.errors)
+              ? data.errors.map(function(x){ return x.message; }).join(', ')
+              : 'Something went wrong. Please try again.';
+          });
+        }
+      }).catch(function(){
+        note.textContent = 'Could not reach the server. Please try again in a moment.';
+      }).finally(function(){
+        btn.disabled = false; btn.textContent = 'Send';
+      });
+    });
+  }
 
   // Kolam: dot grid with loops drawn around alternating dots
   var svg=document.getElementById('kolam'), ns='http://www.w3.org/2000/svg', n=5, gap=36, off=28;
